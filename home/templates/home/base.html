@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Inclure les fichiers CSS de Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Inclure votre fichier CSS personnalisé -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     <!-- ... Autres balises de tête ... -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Ajustement de la nav-bar */
+        .navbar {
+            padding: 15px 10px;
+        }
+
+        /* Alignement des éléments */
+        .navbar-nav.ml-auto {
+            margin-left: auto;
+        }
+
+        .navbar-nav.form-inline {
+            margin-left: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer .social-icons {
+            margin-bottom: 10px;
+        }
+
+        .footer .social-icons a {
+            color: #333;
+            margin: 0 5px;
+        }
+
+        .footer .contact-info {
+            margin-bottom: 10px;
+        }
+
+        .footer .contact-info p {
+            margin-bottom: 5px;
+        }
+        .social-icons a {
+    color: #333; /* Couleur des icônes */
+    font-size: 24px; /* Taille des icônes */
+    margin: 0 10px; /* Espacement entre les icônes */
+    opacity: 1; /* Opacité des icônes */
+    transition: opacity 0.3s ease; /* Transition de l'opacité */
+    color: #fff; 
+    
+}
+
+body {
+    background: linear-gradient(135deg, #c8bc50, #d06741, #e43504); /* Dégradé de couleurs */
+    background-size: auto;/* Taille du dégradé */
+    animation: gradientAnimation 15s ease infinite; /* Animation du dégradé */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; } /* Position initiale du dégradé */
+    50% { background-position: 100% 50%; } /* Position intermédiaire du dégradé */
+    100% { background-position: 0% 50%; } /* Position finale du dégradé */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">EasyReserv.sn</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Réservation de chambre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Réservation de table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Location de voiture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Panier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">S'inscrire</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 ml-auto">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu de la page -->
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Nous contacter</h5>
+                    <p>Email: info@example.com</p>
+                    <p>Téléphone: +1234567890</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Votre email" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">S'inscrire</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">© 2023 EasyReserv.sn . Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- Inclure les fichiers JavaScript de Bootstrap -->
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- Inclure les fichiers JavaScript des icônes Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</body>
+</html>
