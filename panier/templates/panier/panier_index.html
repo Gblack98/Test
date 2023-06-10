@@ -1,0 +1,146 @@
+{% extends 'panier/base_panier.html' %}
+
+{% block title %}
+Panier
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Ajoutez ici vos styles personnalisés pour la page de panier */
+    .container {
+        padding: 20px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .table th {
+        text-align: left;
+    }
+
+    .table td.actions {
+        text-align: center;
+    }
+
+    .total {
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .payment-options {
+        margin-top: 20px;
+    }
+
+    .payment-option {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<header>Ibrahima Gabar Diop</header>
+<div class="container">
+    <h1>Le Panier de Ibrahima Gabar Diop LMI</h1>
+
+    {% if produits_panier %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th class="actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits_panier %}
+                    <tr>
+                        <td>{{ produit.nom }}</td>
+                        <td>{{ produit.prix }}</td>
+                        <td>
+                            <button class="btn-quantite" data-produit-id="{{ produit.id }}" data-quantite="{{ produit.quantite }}">-</button>
+                            <span class="quantite">{{ produit.quantite }}</span>
+                            <button class="btn-quantite" data-produit-id="{{ produit.id }}" data-quantite="{{ produit.quantite }}">+</button>
+                        </td>
+                        <td>{{ produit.prix_total }}</td>
+                        <td class="actions">
+                            <button class="btn-supprimer" data-produit-id="{{ produit.id }}">Supprimer</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="total">
+            Total: {{ total_prix }}
+        </div>
+
+        <div class="payment-options">
+            <h2>Options de paiement :</h2>
+            <div class="payment-option">
+                <input type="radio" name="payment" id="payment-cb" value="cb">
+                <label for="payment-cb">Carte bancaire</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment" id="payment-paypal" value="paypal">
+                <label for="payment-paypal">PayPal</label>
+            </div>
+            <!-- Ajoutez ici d'autres options de paiement -->
+        </div>
+
+        <button class="btn-supprimer-commande">Supprimer la commande</button>
+        <button class="btn-commander">Passer la commande</button>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+</div>
+
+<script>
+    // Script pour augmenter ou diminuer la quantité des produits
+    const btnQuantite = document.querySelectorAll('.btn-quantite');
+    btnQuantite.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const produitId = btn.dataset.produitId;
+            const quantiteElement = btn.parentElement.querySelector('.quantite');
+            let quantite = parseInt(quantiteElement.textContent);
+            const increment = parseInt(btn.dataset.quantite);
+            quantite += increment;
+            quantiteElement.textContent = quantite;
+        });
+    });
+
+    // Script pour supprimer un produit du panier
+    const btnSupprimer = document.querySelectorAll('.btn-supprimer');
+    btnSupprimer.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const produitId = btn.dataset.produitId;
+            // Ajoutez ici la logique pour supprimer le produit du panier
+        });
+    });
+
+    // Script pour supprimer toute la commande
+    const btnSupprimerCommande = document.querySelector('.btn-supprimer-commande');
+    btnSupprimerCommande.addEventListener('click', () => {
+        // Ajoutez ici la logique pour supprimer toute la commande
+    });
+
+    // Script pour passer la commande
+    const btnCommander = document.querySelector('.btn-commander');
+    btnCommander.addEventListener('click', () => {
+        // Ajoutez ici la logique pour passer la commande
+    });
+</script>
+
+{% endblock %}
